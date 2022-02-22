@@ -1,0 +1,190 @@
+$Regular: 400;
+$Semi-bold: 600;
+
+.wrapper {
+	display: flex;
+	align-items: flex-start;
+	margin: 0 auto;
+	width: 754px;
+	justify-content: space-between;
+}
+input[type="radio"],
+input[type="checkbox"] {
+	visibility: hidden;
+	font-size: 0;
+	position: absolute;
+}
+
+.number-of-transfers__item label input[type="checkbox"]:checked + span::before,
+.number-of-transfers__item label input[type="checkbox"]:checked + span::after {
+	content: "";
+	position: absolute;
+	top: 8.5px;
+	left: 5.6px;
+	width: 10px;
+	height: 2px;
+	background-color: #2196f3;
+	border-radius: 0.2rem;
+}
+.number-of-transfers__item label input[type="checkbox"]:checked + span::before {
+	width: 6px;
+	left: 3px;
+	top: 10px;
+}
+.number-of-transfers__item label input[type="checkbox"] + span {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	border: 1px solid #2196f3;
+	background-color: #ffffff;
+	border-radius: 0.2rem;
+	position: relative;
+	margin-right: 10px;
+	user-select: none;
+}
+
+.number-of-transfers__item input[type="checkbox"]:checked + span::before {
+	transform: rotate(45deg);
+}
+.number-of-transfers__item input[type="checkbox"]:checked + span::after {
+	transform: rotate(-45deg);
+}
+
+fieldset,
+.tickets-list__item,
+button {
+	border-radius: 0.5rem;
+	border: transparent;
+	box-shadow: 0px 2px 8px rgb(0 0 0 / 10%);
+	padding: 20px;
+}
+.aviasales-form__number-of-transfer {
+	padding: 20px 0 10px 0;
+}
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.aviasales-form form {
+	display: flex;
+}
+.aviasales-form__number-of-transfer {
+	display: flex;
+	flex-direction: column;
+	font-size: 13px;
+	line-height: 20px;
+	letter-spacing: 0;
+	& legend {
+		display: contents;
+	}
+	& h3 {
+		line-height: 12px;
+		letter-spacing: 0.5px;
+		font-size: 12px;
+		font-weight: $Semi-bold;
+		text-transform: uppercase;
+		margin: 0 0 15px 0;
+		padding: 0 20px;
+	}
+}
+.number-of-transfers__item-list {
+	& input {
+		margin-left: 0;
+	}
+}
+.number-of-transfers__item label {
+	display: flex;
+	align-items: flex-end;
+	padding: 10px 0 10px 20px;
+}
+.number-of-transfers__item,
+.filter-list__item:not(.filter-list__item--active) {
+	& label:hover {
+		background-color: #f1fcff;
+	}
+}
+// .filter-list__item--active label:hover {
+// 	background-color: #2196f3;
+// }
+.aviasales-form__tabs {
+	width: 502px;
+	max-height: 50px;
+	padding: 0;
+	margin-left: 252px;
+	position: absolute;
+}
+.filter__list {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 502px;
+}
+.filter-list__item {
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	font-weight: $Semi-bold;
+	font-size: 12px;
+	text-transform: uppercase;
+	border: none;
+	background-color: white;
+	color: black;
+	padding: 15px 0;
+	text-align: center;
+	border-radius: 0.5rem;
+	& label {
+		padding: 16.5px 27.1px;
+		padding-bottom: 17.5px;
+	}
+	&--active {
+		border-radius: 0.5rem 0 0 0.5rem;
+		background-color: #2196f3;
+		color: white;
+		&-fast {
+			border-radius: 0;
+		}
+		&-optimal {
+			border-radius: 0 0.5rem 0.5rem 0;
+		}
+	}
+}
+.tickets {
+	padding-top: 64px;
+}
+.tickets__list {
+	width: 502px;
+}
+.tickets-list__item {
+	margin-bottom: 20px;
+}
+.tickets-list-item__price {
+	font-size: 24px;
+	font-weight: $Semi-bold;
+	line-height: 24px;
+	color: #2196f3;
+}
+.header-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+	& h2 {
+		margin: 0;
+	}
+}
+.table-route {
+	width: 462px;
+	& td {
+		font-size: 14px;
+		font-weight: $Semi-bold;
+		padding-right: 40px;
+	}
+	& th {
+		font-size: 12px;
+		font-weight: $Semi-bold;
+		color: #a0b0b9;
+		text-transform: uppercase;
+		width: 100px;
+	}
+}
