@@ -10,21 +10,26 @@ export default function Aviasales() {
 	let [ticket, setValue] = useState([]);
 	const [originTicket, setFilter] = useState([]);
 	let [count, setCount] = useState(5);
+	const url = "https://front-test.beta.aviasales.ru/search";
 	//hooks
-	useEffect(() => {
-		fetch("https://front-test.beta.aviasales.ru/search")
-			.then((response) => response.json())
+	const load = (url) => {
+		fetch(url)
+			.then((res) => res.json())
 			.then((json) => search(json.searchId));
+	};
+	useEffect(() => {
+		load(url);
 	}, []);
 	const search = (id) => {
 		fetch(`https://front-test.beta.aviasales.ru/tickets?searchId=${id}`)
-			.then((response) => response.json())
+			.then((response) => (response.ok ? response.json() : load(url)))
 			.then((data) => {
+				if (!data.stop) {
+					return search(id);
+				}
 				setValue(data.tickets);
 				setFilter(data.tickets);
-			})
-
-			.catch((err) => console.log(err));
+			});
 	};
 	//filter Checkbox
 	function filterTransfer() {
@@ -72,7 +77,7 @@ export default function Aviasales() {
 		const listValue = [...document.querySelectorAll("[type=radio]")];
 		listValue.forEach((radio) => {
 			if (radio.checked) {
-				list.find((it) => {
+				list.forEach((it) => {
 					it.setAttribute("class", "filter-list__item");
 					if (it.firstChild.firstChild.value === radio.value) {
 						it.classList.add(
@@ -134,14 +139,12 @@ export default function Aviasales() {
 					) : (
 						<>
 							<ul className='tickets__list'>
-								{ticket.length != 0
-									? ticket.map((tickets, i) => {
-											if (i >= count) {
-												return;
-											}
-											return <Tickets tickets={tickets} key={tickets.price} />;
-									  })
-									: {}}
+								{ticket.map((tickets, i) => {
+									if (i >= count) {
+										return null;
+									}
+									return <Tickets tickets={tickets} key={tickets.price} />;
+								})}
 							</ul>
 							<Button onClick={handleClick} />
 						</>
