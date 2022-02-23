@@ -1,6 +1,6 @@
 import React from "react";
 
-function Tabs() {
+const Tabs = () => {
 	const radioValue = {
 		cheep: "Самый дешевый",
 		fast: "Самый быстрый",
@@ -22,6 +22,6 @@ function Tabs() {
 			</ul>
 		</fieldset>
 	);
-}
+};
 
-export default Tabs;
+export { Tabs };

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import logo from "../src/assets/svg/logo.svg";
-import Form from "./components/Form/Form";
-import Tickets from "./components/Tickets/Tickets";
-import Button from "./components/Button/Button";
-import Loader from "./components/Loader/Loader";
+import { Form } from "./components/Form/Form";
+import { Tickets } from "./components/Tickets/Tickets";
+import { Button } from "./components/Button/Button";
+import { Loader } from "./components/Loader/Loader";
 import { getTickets, url } from "./api/getTickets";
 
-export default function Aviasales() {
+const App = () => {
 	//State
 	let [ticket, setValue] = useState([]);
 	const [originTicket, setOrigin] = useState([]);
@@ -21,7 +21,7 @@ export default function Aviasales() {
 	}, []);
 
 	//filter Checkbox
-	function filterTransfer() {
+	const filterTransfer = () => {
 		let filtered = [];
 		setCount((count = 5));
 		const checkbox = [...document.querySelectorAll("[type=checkbox]")];
@@ -57,9 +57,9 @@ export default function Aviasales() {
 			}
 		});
 		setValue((ticket = filtered));
-	}
+	};
 	//filter tabs
-	function filterForm() {
+	const filterForm = () => {
 		setValue((ticket = originTicket));
 		filterTransfer();
 		const list = [...document.querySelectorAll(".filter-list__item")];
@@ -107,12 +107,12 @@ export default function Aviasales() {
 				);
 			}
 		});
-	}
+	};
 
 	//button click
-	function handleClick() {
+	const handleClick = () => {
 		setCount((count += 5));
-	}
+	};
 	return (
 		<>
 			<header>
@@ -142,4 +142,5 @@ export default function Aviasales() {
 			</div>
 		</>
 	);
-}
+};
+export { App };

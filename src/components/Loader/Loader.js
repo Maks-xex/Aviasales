@@ -5,7 +5,7 @@ for (let i = 1; i <= 18; i++) {
 	span.push(<span style={{ ["--i"]: i }} key={i}></span>);
 }
 
-export default function Loader() {
+const Loader = () => {
 	return (
 		<>
 			<div className='loader loader2'>
@@ -15,4 +15,5 @@ export default function Loader() {
 			<p className='loader-text'>Loading Tickets...</p>
 		</>
 	);
-}
+};
+export { Loader };
