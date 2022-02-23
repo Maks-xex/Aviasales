@@ -1,9 +1,10 @@
 import React from "react";
 
-let span = [];
-for (let i = 1; i <= 18; i++) {
-	span.push(<span style={{ ["--i"]: i }} key={i}></span>);
-}
+const span = Array(18)
+	.fill()
+	.map((it, i) => {
+		return (it = <span style={{ ["--i"]: i + 1 }} key={i}></span>);
+	});
 
 const Loader = () => {
 	return (
