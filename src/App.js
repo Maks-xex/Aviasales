@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
-import Form from "./Form/Form";
-import Tickets from "./Tickets/Tickets";
-import Button from "./Button";
-import Loader from "./Loader";
+import logo from "../src/assets/svg/logo.svg";
+import Form from "./components/Form/Form";
+import Tickets from "./components/Tickets/Tickets";
+import Button from "./components/Button/Button";
+import Loader from "./components/Loader/Loader";
 import { getTickets, url } from "./api/getTickets";
 
 export default function Aviasales() {
