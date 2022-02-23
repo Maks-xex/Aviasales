@@ -2,20 +2,14 @@ import React from "react";
 import S7logo from "../../assets/images/S7 Logo.png";
 import propTypes from "prop-types";
 import "./TicketStyle.scss";
+import { convertTime } from "../../utils/converTime";
 
 function Tickets({ tickets }) {
 	const segments = tickets.segments;
-
-	function timeConvert(num) {
-		const hours = Math.floor(num / 60);
-		const minutes = Math.round((num / 60 - hours) * 60);
-		return hours + "ч " + minutes + "м";
-	}
-
 	const dateForth = (segments[0].date = new Date().toLocaleDateString());
 	const dateBack = (segments[1].date = new Date().toLocaleDateString());
-	const timeForth = timeConvert(segments[0].duration);
-	const timeBack = timeConvert(segments[1].duration);
+	const timeForth = convertTime(segments[0].duration);
+	const timeBack = convertTime(segments[1].duration);
 	const stopForth = segments[0].stops.join(", ");
 	const stopBack = segments[1].stops.join(", ");
 	const transfersForth = segments[0].stops.length;
