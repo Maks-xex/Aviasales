@@ -1,5 +1,6 @@
 @import url("https://use.fontawesome.com/releases/v5.0.9/css/all.css");
-
+$Regular: 400;
+$Semi-bold: 600;
 * {
 	margin: 0;
 	padding: 0;
@@ -10,7 +11,7 @@ body {
 	margin: 0;
 	font-family: "Open Sans", sans-serif;
 	font-size: 14px;
-	font-weight: 400;
+	font-weight: $Regular;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -34,7 +35,7 @@ button {
 	color: white;
 
 	font-size: 12px;
-	font-weight: 600;
+	font-weight: $Semi-bold;
 
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -100,7 +101,7 @@ button {
 	&:before {
 		content: "\f072";
 		position: absolute;
-		font-weight: 600;
+		font-weight: $Semi-bold;
 		font-family: "Font Awesome 5 Free";
 		top: 37px;
 		left: 21px;

@@ -1,6 +1,7 @@
 import React from "react";
 import S7logo from "../S7 Logo.png";
 import propTypes from "prop-types";
+import "./TicketStyle.scss";
 
 function Tickets({ tickets }) {
 	const segments = tickets.segments;

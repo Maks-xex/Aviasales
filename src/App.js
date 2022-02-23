@@ -1,36 +1,25 @@
 import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
-import Form from "./Form/form";
+import Form from "./Form/Form";
 import Tickets from "./Tickets/Tickets";
 import Button from "./Button";
 import Loader from "./Loader";
+import { getTickets, url } from "./api/getTickets";
 
 export default function Aviasales() {
 	//State
 	let [ticket, setValue] = useState([]);
-	const [originTicket, setFilter] = useState([]);
+	const [originTicket, setOrigin] = useState([]);
 	let [count, setCount] = useState(5);
-	const url = "https://front-test.beta.aviasales.ru/search";
 	//hooks
-	const load = (url) => {
-		fetch(url)
-			.then((res) => res.json())
-			.then((json) => search(json.searchId));
+	const success = (data) => {
+		setValue(data);
+		setOrigin(data);
 	};
 	useEffect(() => {
-		load(url);
+		getTickets(url, success);
 	}, []);
-	const search = (id) => {
-		fetch(`https://front-test.beta.aviasales.ru/tickets?searchId=${id}`)
-			.then((response) => (response.ok ? response.json() : load(url)))
-			.then((data) => {
-				if (!data.stop) {
-					return search(id);
-				}
-				setValue(data.tickets);
-				setFilter(data.tickets);
-			});
-	};
+
 	//filter Checkbox
 	function filterTransfer() {
 		let filtered = [];
