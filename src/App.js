@@ -9,14 +9,14 @@ import { Header } from "./components/Header/Header";
 
 export const App = () => {
 	//State
-	let [ticket, setValue] = useState([]);
-	const [originTicket, setOrigin] = useState([]);
+	let [ticket, setTicket] = useState([]);
+	const [origin, setOrigin] = useState([]);
 	let [count, setCount] = useState(5);
 
 	//hooks
 	const getTicketsAsync = async () => {
 		const response = await getTickets();
-		setValue(response);
+		setTicket(response);
 		setOrigin(response);
 	};
 	useEffect(() => {
@@ -59,11 +59,11 @@ export const App = () => {
 				}
 			}
 		});
-		setValue((ticket = filtered));
+		setTicket((ticket = filtered));
 	};
 	//filter tabs
 	const filterForm = () => {
-		setValue((ticket = originTicket));
+		setTicket((ticket = origin));
 		filterTransfer();
 		const list = [...document.querySelectorAll(".filter-list__item")];
 		const listValue = [...document.querySelectorAll("[type=radio]")];
@@ -78,7 +78,7 @@ export const App = () => {
 						);
 					}
 				});
-				setValue(
+				setTicket(
 					ticket
 						.sort((a, b) => {
 							switch (radio.value) {
