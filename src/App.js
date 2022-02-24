@@ -9,9 +9,9 @@ import { Header } from "./components/Header/Header";
 
 export const App = () => {
 	//State
-	let [ticket, setTicket] = useState([]);
+	const [tickets, setTicket] = useState([]);
 	const [origin, setOrigin] = useState([]);
-	let [count, setCount] = useState(5);
+	const [count, setCount] = useState(5);
 
 	//hooks
 	const getTicketsAsync = async () => {
@@ -26,7 +26,7 @@ export const App = () => {
 	//filter Checkbox
 	const filterTransfer = () => {
 		let filtered = [];
-		setCount((count = 5));
+		setCount(5);
 		const checkbox = [...document.querySelectorAll("[type=checkbox]")];
 		const valueCheckboxMap = {
 			"three-transfer": 3,
@@ -43,7 +43,7 @@ export const App = () => {
 		if (noCheckCount >= checkbox.length) {
 			return;
 		}
-		ticket.forEach((it) => {
+		tickets.forEach((it) => {
 			for (let target of checkbox) {
 				if (target.name === "all" && target.checked) {
 					filtered.push(it);
@@ -59,11 +59,11 @@ export const App = () => {
 				}
 			}
 		});
-		setTicket((ticket = filtered));
+		setTicket(filtered);
 	};
 	//filter tabs
 	const filterForm = () => {
-		setTicket((ticket = origin));
+		setTicket(origin);
 		filterTransfer();
 		const list = [...document.querySelectorAll(".filter-list__item")];
 		const listValue = [...document.querySelectorAll("[type=radio]")];
@@ -79,7 +79,7 @@ export const App = () => {
 					}
 				});
 				setTicket(
-					ticket
+					tickets
 						.sort((a, b) => {
 							switch (radio.value) {
 								case "cheep":
@@ -114,7 +114,7 @@ export const App = () => {
 
 	//button click
 	const handleClick = () => {
-		setCount((count += 5));
+		setCount(count + 5);
 	};
 	return (
 		<>
@@ -124,12 +124,12 @@ export const App = () => {
 					<Form onFilterForm={filterForm} />
 				</section>
 				<section className='tickets'>
-					{ticket.length === 0 ? (
+					{tickets.length === 0 ? (
 						<Loader />
 					) : (
 						<>
 							<ul className='tickets__list'>
-								{ticket.map((tickets, i) => {
+								{tickets.map((tickets, i) => {
 									if (i >= count) {
 										return null;
 									}
