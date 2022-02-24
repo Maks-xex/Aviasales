@@ -6,14 +6,12 @@ const span = Array(18)
 		return (it = <span style={{ ["--i"]: i + 1 }} key={i}></span>);
 	});
 
-export const Loader = () => {
-	return (
-		<>
-			<div className='loader loader2'>
-				{span}
-				<div className='plane'></div>
-			</div>
-			<p className='loader-text'>Loading Tickets...</p>
-		</>
-	);
-};
+export const Loader = () => (
+	<>
+		<div className='loader loader2'>
+			{span}
+			<div className='plane'></div>
+		</div>
+		<p className='loader-text'>Loading Tickets...</p>
+	</>
+);
