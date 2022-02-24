@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import logo from "../src/assets/svg/logo.svg";
+
 import { Form } from "./components/Form/Form";
 import { Tickets } from "./components/Tickets/Tickets";
 import { Button } from "./components/Button/Button";
 import { Loader } from "./components/Loader/Loader";
 import { getTickets } from "./api/getTickets";
+import { Header } from "./components/Header/Header";
 
 export const App = () => {
 	//State
@@ -117,9 +118,7 @@ export const App = () => {
 	};
 	return (
 		<>
-			<header>
-				<img src={logo} alt='logo' />
-			</header>
+			<Header />
 			<div className='wrapper'>
 				<section className='aviasales-form'>
 					<Form onFilterForm={filterForm} />
