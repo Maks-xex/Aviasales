@@ -1,10 +1,11 @@
-const URL = "https://front-test.beta.aviasales.ru/tickets?searchId=";
-const search = async (id, url = URL) => {
-	let data = await fetch(url + id)
-		.then((response) => (response.ok ? response.json() : search(id)))
+import { searchId } from "./constants";
+
+export const searchTicket = async (id) => {
+	let data = await fetch(searchId + id)
+		.then((response) => (response.ok ? response.json() : searchTicket(id)))
 		.then((json) => {
 			if (json && !json.stop) {
-				return search(id);
+				return searchTicket(id);
 			}
 			return json;
 		});
@@ -12,4 +13,3 @@ const search = async (id, url = URL) => {
 		return data;
 	}
 };
-export { search };
