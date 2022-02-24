@@ -1,6 +1,6 @@
 import React from "react";
 
-const Filter = () => {
+export const Filter = () => {
 	return (
 		<fieldset className='aviasales-form__number-of-transfer'>
 			<legend>
@@ -43,4 +43,3 @@ const Filter = () => {
 		</fieldset>
 	);
 };
-export { Filter };

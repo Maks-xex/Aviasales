@@ -6,7 +6,7 @@ const span = Array(18)
 		return (it = <span style={{ ["--i"]: i + 1 }} key={i}></span>);
 	});
 
-const Loader = () => {
+export const Loader = () => {
 	return (
 		<>
 			<div className='loader loader2'>
@@ -17,4 +17,3 @@ const Loader = () => {
 		</>
 	);
 };
-export { Loader };

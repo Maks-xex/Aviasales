@@ -4,7 +4,7 @@ import propTypes from "prop-types";
 import "./TicketStyle.scss";
 import { convertTime } from "../../utils/converTime";
 
-const Tickets = ({ tickets }) => {
+export const Tickets = ({ tickets }) => {
 	const segments = tickets.segments;
 	const dateForth = (segments[0].date = new Date().toLocaleDateString());
 	const dateBack = (segments[1].date = new Date().toLocaleDateString());
@@ -63,5 +63,3 @@ const Tickets = ({ tickets }) => {
 Tickets.propTypes = {
 	tickets: propTypes.object.isRequired,
 };
-
-export { Tickets };

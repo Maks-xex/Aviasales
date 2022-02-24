@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 
-const Button = ({ onClick }) => {
+export const Button = ({ onClick }) => {
 	return (
 		<button type='button' onClick={onClick}>
 			Показать ещё 5
@@ -11,4 +11,3 @@ const Button = ({ onClick }) => {
 Button.propTypes = {
 	onClick: propTypes.func.isRequired,
 };
-export { Button };

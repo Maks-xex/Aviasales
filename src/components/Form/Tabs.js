@@ -1,6 +1,6 @@
 import React from "react";
 
-const Tabs = () => {
+export const Tabs = () => {
 	const radioValue = {
 		cheep: "Самый дешевый",
 		fast: "Самый быстрый",
@@ -23,5 +23,3 @@ const Tabs = () => {
 		</fieldset>
 	);
 };
-
-export { Tabs };

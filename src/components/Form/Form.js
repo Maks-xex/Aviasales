@@ -4,7 +4,7 @@ import { Filter } from "./Filter";
 import { Tabs } from "./Tabs";
 import propTypes from "prop-types";
 
-const Form = (props) => {
+export const Form = (props) => {
 	return (
 		<form onChange={props.onFilterForm}>
 			<Filter />
@@ -15,4 +15,3 @@ const Form = (props) => {
 Form.propTypes = {
 	onFilterForm: propTypes.func.isRequired,
 };
-export { Form };

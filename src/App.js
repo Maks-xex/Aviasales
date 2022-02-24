@@ -6,7 +6,7 @@ import { Button } from "./components/Button/Button";
 import { Loader } from "./components/Loader/Loader";
 import { getTickets, url } from "./api/getTickets";
 
-const App = () => {
+export const App = () => {
 	//State
 	let [ticket, setValue] = useState([]);
 	const [originTicket, setOrigin] = useState([]);
@@ -143,4 +143,3 @@ const App = () => {
 		</>
 	);
 };
-export { App };
