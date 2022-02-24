@@ -4,20 +4,22 @@ import { Form } from "./components/Form/Form";
 import { Tickets } from "./components/Tickets/Tickets";
 import { Button } from "./components/Button/Button";
 import { Loader } from "./components/Loader/Loader";
-import { getTickets, url } from "./api/getTickets";
+import { getTickets } from "./api/getTickets";
 
 export const App = () => {
 	//State
 	let [ticket, setValue] = useState([]);
 	const [originTicket, setOrigin] = useState([]);
 	let [count, setCount] = useState(5);
+
 	//hooks
-	const success = (data) => {
-		setValue(data);
-		setOrigin(data);
+	const getTicketsAsync = async () => {
+		const response = await getTickets();
+		setValue(response);
+		setOrigin(response);
 	};
 	useEffect(() => {
-		getTickets(url, success);
+		getTicketsAsync();
 	}, []);
 
 	//filter Checkbox

@@ -1,9 +1,17 @@
 import { search } from "./searchTickets";
-const url = "https://front-test.beta.aviasales.ru/search";
-const getTickets = (url, callback) => {
-	fetch(url)
+const URL = "https://front-test.beta.aviasales.ru/search";
+export const getTickets = async (url = URL) => {
+	let data = await fetch(url)
 		.then((res) => res.json())
 		.then((json) => search(json.searchId))
-		.then((data) => callback(data.tickets));
+		.then((data) => data.tickets);
+	return data;
 };
-export { getTickets, url };
+
+// const getValue = async () => {
+// 	try {
+// 		let value = await getTickets();
+// 	} catch (err) {
+// 		console.log(err);
+// 	}
+// };
