@@ -126,7 +126,6 @@ export const App = () => {
 	const handleClick = () => {
 		setCount(count + 5);
 	};
-	console.log(tickets);
 	return (
 		<>
 			<Header />
@@ -140,7 +139,7 @@ export const App = () => {
 					) : (
 						<>
 							<ul className='tickets__list'>{renderTickets(tickets)}</ul>
-							<Button onClick={handleClick} />
+							<Button onClick={handleClick} children='Показать ещё 5' />
 						</>
 					)}
 				</section>
