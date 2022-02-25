@@ -9,20 +9,19 @@ import { Header } from "./components/Header/Header";
 
 export const App = () => {
 	//State
-	const [tickets, setTicket] = useState([]);
 	const [origin, setOrigin] = useState([]);
+	const [tickets, setTickets] = useState([]);
 	const [count, setCount] = useState(5);
-
 	//hooks
 	const getTicketsAsync = async () => {
 		const response = await getTickets();
-		setTicket(response);
 		setOrigin(response);
+		setTickets(response);
 	};
+
 	useEffect(() => {
 		getTicketsAsync();
 	}, []);
-
 	//filter Checkbox
 	const filterTransfer = () => {
 		let filtered = [];
@@ -41,6 +40,7 @@ export const App = () => {
 			}
 		});
 		if (noCheckCount >= checkbox.length) {
+			filtered = origin;
 			return;
 		}
 		tickets.forEach((it) => {
@@ -55,16 +55,13 @@ export const App = () => {
 					target.checked
 				) {
 					filtered.push(it);
-					return;
 				}
 			}
 		});
-		setTicket(filtered);
+		setTickets(filtered);
 	};
 	//filter tabs
-	const filterForm = () => {
-		setTicket(origin);
-		filterTransfer();
+	const filterRadio = () => {
 		const list = [...document.querySelectorAll(".filter-list__item")];
 		const listValue = [...document.querySelectorAll("[type=radio]")];
 		listValue.forEach((radio) => {
@@ -78,44 +75,58 @@ export const App = () => {
 						);
 					}
 				});
-				setTicket(
-					tickets
-						.sort((a, b) => {
-							switch (radio.value) {
-								case "cheep":
-									return a.price - b.price;
-								case "fast":
-									return (
-										a.segments[0].duration +
-										a.segments[1].duration -
-										(b.segments[0].duration + b.segments[1].duration)
-									);
-								default:
-									return (
-										(a.price -
-											b.price +
+
+				setTickets(
+					(tickets) =>
+						(tickets = tickets
+							.sort((a, b) => {
+								switch (radio.value) {
+									case "cheep":
+										return a.price - b.price;
+									case "fast":
+										return (
 											a.segments[0].duration +
 											a.segments[1].duration -
-											(b.segments[0].duration + b.segments[1].duration)) /
-											6 +
-										(a.segments[0].stops.length +
-											a.segments[1].stops.length -
-											(b.segments[0].stops.length +
-												b.segments[1].stops.length)) /
-											6
-									);
-							}
-						})
-						.map((elem) => elem),
+											(b.segments[0].duration + b.segments[1].duration)
+										);
+									default:
+										return (
+											(a.price -
+												b.price +
+												a.segments[0].duration +
+												a.segments[1].duration -
+												(b.segments[0].duration + b.segments[1].duration)) /
+												6 +
+											(a.segments[0].stops.length +
+												a.segments[1].stops.length -
+												(b.segments[0].stops.length +
+													b.segments[1].stops.length)) /
+												6
+										);
+								}
+							})
+							.map((elem) => elem)),
 				);
 			}
 		});
 	};
-
+	const filterForm = () => {
+		setTickets(origin);
+		filterTransfer();
+		filterRadio();
+	};
+	const renderTickets = (tickets) =>
+		tickets.map((ticket, i) => {
+			if (i >= count) {
+				return null;
+			}
+			return <Tickets tickets={ticket} key={ticket.price} />;
+		});
 	//button click
 	const handleClick = () => {
 		setCount(count + 5);
 	};
+	console.log(tickets);
 	return (
 		<>
 			<Header />
@@ -128,14 +139,7 @@ export const App = () => {
 						<Loader />
 					) : (
 						<>
-							<ul className='tickets__list'>
-								{tickets.map((tickets, i) => {
-									if (i >= count) {
-										return null;
-									}
-									return <Tickets tickets={tickets} key={tickets.price} />;
-								})}
-							</ul>
+							<ul className='tickets__list'>{renderTickets(tickets)}</ul>
 							<Button onClick={handleClick} />
 						</>
 					)}
