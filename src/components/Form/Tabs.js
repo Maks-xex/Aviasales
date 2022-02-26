@@ -5,7 +5,7 @@ const radioValue = {
 	fast: "Самый быстрый",
 	optimal: "Оптимальный",
 };
-const renderRadioButton = () =>
+const renderRadioButtons = () =>
 	Object.keys(radioValue).map((it, i) => (
 		<li key={i} className={"filter-list__item"}>
 			<label>
@@ -17,6 +17,6 @@ const renderRadioButton = () =>
 
 export const Tabs = () => (
 	<fieldset className='aviasales-form__tabs'>
-		<ul className='filter__list'>{renderRadioButton()}</ul>
+		<ul className='filter__list'>{renderRadioButtons()}</ul>
 	</fieldset>
 );
