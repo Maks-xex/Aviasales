@@ -5,15 +5,15 @@ import "./TicketStyle.scss";
 import { convertTime } from "../../utils/converTime";
 
 export const Tickets = ({ tickets }) => {
-	const segments = tickets.segments;
-	const dateForth = (segments[0].date = new Date().toLocaleDateString());
-	const dateBack = (segments[1].date = new Date().toLocaleDateString());
-	const timeForth = convertTime(segments[0].duration);
-	const timeBack = convertTime(segments[1].duration);
-	const stopForth = segments[0].stops.join(", ");
-	const stopBack = segments[1].stops.join(", ");
-	const transfersForth = segments[0].stops.length;
-	const transfersBack = segments[1].stops.length;
+	const [firstSegments, secondSegments] = tickets.segments;
+	const dateForth = (firstSegments.date = new Date().toLocaleDateString());
+	const dateBack = (secondSegments.date = new Date().toLocaleDateString());
+	const timeForth = convertTime(firstSegments.duration);
+	const timeBack = convertTime(secondSegments.duration);
+	const stopForth = firstSegments.stops.join(", ");
+	const stopBack = secondSegments.stops.join(", ");
+	const transfersForth = firstSegments.stops.length;
+	const transfersBack = secondSegments.stops.length;
 	const price = tickets.price
 		.toString()
 		.split("")
@@ -29,7 +29,7 @@ export const Tickets = ({ tickets }) => {
 				<tbody>
 					<tr>
 						<th>
-							{segments[0].origin} - {segments[0].destination}
+							{firstSegments.origin} - {firstSegments.destination}
 						</th>
 						<th>в пути</th>
 						<th>
@@ -43,7 +43,7 @@ export const Tickets = ({ tickets }) => {
 					</tr>
 					<tr>
 						<th>
-							{segments[1].origin} - {segments[1].destination}
+							{secondSegments.origin} - {secondSegments.destination}
 						</th>
 						<th>в пути</th>
 						<th>
