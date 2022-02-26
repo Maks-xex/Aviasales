@@ -10,6 +10,7 @@ import { Header } from "./components/Header/Header";
 export const App = () => {
 	//State
 	const [origin, setOrigin] = useState([]);
+	// const originArray = origin;
 	const [tickets, setTickets] = useState([]);
 	const [count, setCount] = useState(5);
 	//hooks
@@ -43,7 +44,7 @@ export const App = () => {
 			filtered = origin;
 			return;
 		}
-		tickets.forEach((it) => {
+		origin.forEach((it) => {
 			for (let target of checkbox) {
 				if (target.name === "all" && target.checked) {
 					filtered.push(it);
@@ -58,7 +59,7 @@ export const App = () => {
 				}
 			}
 		});
-		setTickets(filtered);
+		setTickets(() => filtered);
 	};
 	//filter tabs
 	const filterRadio = () => {
@@ -111,7 +112,6 @@ export const App = () => {
 		});
 	};
 	const filterForm = () => {
-		setTickets(origin);
 		filterTransfer();
 		filterRadio();
 	};
