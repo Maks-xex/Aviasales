@@ -10,14 +10,16 @@ import { Header } from "./components/Header/Header";
 export const App = () => {
 	//State
 	const [origin, setOrigin] = useState([]);
-	// const originArray = origin;
 	const [tickets, setTickets] = useState([]);
+	const [loading, setLoading] = useState();
 	const [count, setCount] = useState(5);
 	//hooks
 	const getTicketsAsync = async () => {
+		setLoading(true);
 		const response = await getTickets();
 		setOrigin(response);
 		setTickets(response);
+		setLoading(false);
 	};
 
 	useEffect(() => {
@@ -134,7 +136,7 @@ export const App = () => {
 					<Form onFilterForm={filterForm} />
 				</section>
 				<section className='tickets'>
-					{tickets.length === 0 ? (
+					{loading ? (
 						<Loader />
 					) : (
 						<>
