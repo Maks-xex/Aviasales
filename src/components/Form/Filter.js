@@ -7,7 +7,7 @@ const checkboxValue = {
 	"two-transfer": "2 пересадка",
 	"three-transfer": "3 пересадка",
 };
-const renderCheckboxButton = () =>
+const renderCheckboxes = () =>
 	Object.keys(checkboxValue).map((it, i) => (
 		<li className='number-of-transfers__item' key={i}>
 			<label>
@@ -23,6 +23,6 @@ export const Filter = () => (
 		<legend>
 			<h3>Количество пересадок</h3>
 		</legend>
-		<ul className='number-of-transfers__item-list'>{renderCheckboxButton()}</ul>
+		<ul className='number-of-transfers__item-list'>{renderCheckboxes()}</ul>
 	</fieldset>
 );
