@@ -62,7 +62,7 @@ export const App = () => {
 		setTickets(() => filtered);
 	};
 	//filter tabs
-	const filterRadio = () => {
+	const filterTabs = () => {
 		const list = [...document.querySelectorAll(".filter-list__item")];
 		const listValue = [...document.querySelectorAll("[type=radio]")];
 		listValue.forEach((radio) => {
@@ -113,7 +113,7 @@ export const App = () => {
 	};
 	const filterForm = () => {
 		filterTransfer();
-		filterRadio();
+		filterTabs();
 	};
 	const renderTickets = (tickets) =>
 		tickets.map((ticket, i) => {

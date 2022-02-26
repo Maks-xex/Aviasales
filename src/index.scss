@@ -6,7 +6,9 @@ $Semi-bold: 600;
 	padding: 0;
 	box-sizing: border-box;
 }
-
+.v-hidden {
+	visibility: hidden;
+}
 body {
 	margin: 0;
 	font-family: "Open Sans", sans-serif;
