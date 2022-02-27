@@ -19,6 +19,7 @@ export const App = () => {
 		setLoading(true);
 		const ticketId = await getTicketsId();
 		const response = await getTickets(ticketId);
+		console.log(response);
 		setOrigin(response);
 		setTickets(response);
 		setLoading(false);

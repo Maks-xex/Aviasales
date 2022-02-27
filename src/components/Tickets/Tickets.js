@@ -1,10 +1,10 @@
 import React from "react";
-import S7logo from "../../assets/images/S7 Logo.png";
+// import S7logo from "../../assets/images/S7 Logo.png";
 import propTypes from "prop-types";
 import "./TicketStyle.scss";
 import { convertTime } from "../../utils/converTime";
-
 export const Tickets = ({ tickets }) => {
+	const companyLogo = `https://pics.avs.io/99/36/${tickets.carrier}.png`;
 	const [firstSegments, secondSegments] = tickets.segments;
 	const dateForth = (firstSegments.date = new Date().toLocaleDateString());
 	const dateBack = (secondSegments.date = new Date().toLocaleDateString());
@@ -23,7 +23,7 @@ export const Tickets = ({ tickets }) => {
 		<li className='tickets-list__item'>
 			<div className='header-wrapper'>
 				<h2 className='tickets-list-item__price'>{price}₽</h2>
-				<img src={S7logo} alt='S7_logo' />
+				<img src={companyLogo} alt='S7_logo' />
 			</div>
 			<table className='table-route'>
 				<tbody>
