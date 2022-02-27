@@ -4,8 +4,9 @@ import { Form } from "./components/Form/Form";
 import { Tickets } from "./components/Tickets/Tickets";
 import { Button } from "./components/Button/Button";
 import { Loader } from "./components/Loader/Loader";
-import { getTickets } from "./api/getTickets";
 import { Header } from "./components/Header/Header";
+import { getTicketsId } from "./api/getTicketsId";
+import { getTickets } from "./api/getTickets";
 
 export const App = () => {
 	//State
@@ -16,7 +17,8 @@ export const App = () => {
 	//hooks
 	const getTicketsAsync = async () => {
 		setLoading(true);
-		const response = await getTickets();
+		const ticketId = await getTicketsId();
+		const response = await getTickets(ticketId);
 		setOrigin(response);
 		setTickets(response);
 		setLoading(false);

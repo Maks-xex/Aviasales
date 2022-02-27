@@ -1,10 +1,13 @@
-import { search } from "./constants";
-import { searchTicket } from "./searchTickets";
+import { searchId } from "./constants";
 
-export const getTickets = async () => {
-	let data = await fetch(search)
-		.then((res) => res.json())
-		.then((json) => searchTicket(json.searchId))
-		.then((data) => data.tickets);
+export const getTickets = async (id) => {
+	let data = await fetch(searchId + id)
+		.then((response) => (response.ok ? response.json() : getTickets(id)))
+		.then((json) => {
+			if (json && !json.stop) {
+				return getTickets(id);
+			}
+			return json.tickets;
+		});
 	return data;
 };
