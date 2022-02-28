@@ -23,7 +23,7 @@ export const Tickets = ({ tickets }) => {
 		<li className='tickets-list__item'>
 			<div className='header-wrapper'>
 				<h2 className='tickets-list-item__price'>{price}₽</h2>
-				<img src={companyLogo} alt='S7_logo' />
+				<img src={companyLogo} alt={`${tickets.carrier}`} />
 			</div>
 			<table className='table-route'>
 				<tbody>

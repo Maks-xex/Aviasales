@@ -5,11 +5,20 @@ const radioValue = {
 	fast: "Самый быстрый",
 	optimal: "Оптимальный",
 };
+const acticveButton =
+	"filter-list__item filter-list__item--active-optimal filter-list__item--active";
 const renderRadioButtons = () =>
 	Object.keys(radioValue).map((it, i) => (
-		<li key={i} className={"filter-list__item"}>
+		<li
+			key={i}
+			className={it === "optimal" ? acticveButton : "filter-list__item"}>
 			<label>
-				<input type='radio' name='filter' value={it} />
+				<input
+					type='radio'
+					name='filter'
+					value={it}
+					defaultChecked={it === "optimal"}
+				/>
 				{radioValue[it]}
 			</label>
 		</li>

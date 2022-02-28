@@ -14,20 +14,22 @@ export const App = () => {
 	const [tickets, setTickets] = useState([]);
 	const [loading, setLoading] = useState();
 	const [count, setCount] = useState(5);
+
 	//hooks
 	const getTicketsAsync = async () => {
 		setLoading(true);
 		const ticketId = await getTicketsId();
 		const response = await getTickets(ticketId);
-		console.log(response);
 		setOrigin(response);
 		setTickets(response);
+		filterTabs();
 		setLoading(false);
 	};
 
 	useEffect(() => {
 		getTicketsAsync();
 	}, []);
+
 	//filter Checkbox
 	const filterTransfer = () => {
 		let filtered = [];
