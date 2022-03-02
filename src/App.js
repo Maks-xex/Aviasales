@@ -1,28 +1,34 @@
 import React, { useState, useEffect } from "react";
 
-import { Form } from "./components/Form/Form";
-import { Tickets } from "./components/Tickets/Tickets";
-import { Button } from "./components/Button/Button";
-import { Loader } from "./components/Loader/Loader";
 import { Header } from "./components/Header/Header";
 import { getTicketsId } from "./api/getTicketsId";
 import { getTickets } from "./api/getTickets";
+import { SectionTickets } from "./components/Tickets/SectionTickets";
+import { SectionAviasalesForm } from "./components/Form/SectionAviasalesForm";
+import { ErrorBoundaries } from "./components/ErrorBoundaries";
 
 export const App = () => {
 	//State
-	const [origin, setOrigin] = useState([]);
+	const [origin, setOrigin] = useState(["asd", "asd"]);
 	const [tickets, setTickets] = useState([]);
 	const [loading, setLoading] = useState();
 	const [count, setCount] = useState(5);
-
+	const [error, setError] = useState(false);
+	const [errorMessage, setErrorMeassage] = useState();
+	const handleError = (err) => {
+		setErrorMeassage(err);
+		setError(true);
+	};
 	//hooks
 	const getTicketsAsync = async () => {
 		setLoading(true);
-		const ticketId = await getTicketsId();
-		const response = await getTickets(ticketId);
-		setOrigin(response);
-		setTickets(response);
-		filterTabs();
+		const ticketId = await getTicketsId(handleError);
+		const response = await getTickets(ticketId, handleError);
+		if (response) {
+			setOrigin(response);
+			setTickets(response);
+			filterTabs();
+		}
 		setLoading(false);
 	};
 
@@ -31,7 +37,7 @@ export const App = () => {
 	}, []);
 
 	//filter Checkbox
-	const filterTransfer = () => {
+	const filterTransfer = (evt) => {
 		let filtered = [];
 		setCount(5);
 		const checkbox = [...document.querySelectorAll("[type=checkbox]")];
@@ -47,14 +53,15 @@ export const App = () => {
 				noCheckCount++;
 			}
 		});
-		if (noCheckCount >= checkbox.length) {
-			filtered = origin;
+		if (noCheckCount === checkbox.length) {
+			setTickets(origin);
 			return;
 		}
 		origin.forEach((it) => {
-			for (let target of checkbox) {
-				if (target.name === "all" && target.checked) {
+			checkbox.forEach((target) => {
+				if (evt.target.name === "all") {
 					filtered.push(it);
+					target.checked = evt.target.checked;
 					return;
 				}
 				if (
@@ -64,7 +71,7 @@ export const App = () => {
 				) {
 					filtered.push(it);
 				}
-			}
+			});
 		});
 		setTickets(() => filtered);
 	};
@@ -118,17 +125,10 @@ export const App = () => {
 			}
 		});
 	};
-	const filterForm = () => {
-		filterTransfer();
-		filterTabs();
+	const filterForm = (evt) => {
+		filterTransfer(evt);
+		// filterTabs();
 	};
-	const renderTickets = (tickets) =>
-		tickets.map((ticket, i) => {
-			if (i >= count) {
-				return null;
-			}
-			return <Tickets tickets={ticket} key={ticket.price} />;
-		});
 	//button click
 	const handleClick = () => {
 		setCount(count + 5);
@@ -137,19 +137,17 @@ export const App = () => {
 		<>
 			<Header />
 			<div className='wrapper'>
-				<section className='aviasales-form'>
-					<Form onFilterForm={filterForm} />
-				</section>
-				<section className='tickets'>
-					{loading ? (
-						<Loader />
-					) : (
-						<>
-							<ul className='tickets__list'>{renderTickets(tickets)}</ul>
-							<Button onClick={handleClick} children='Показать ещё 5' />
-						</>
-					)}
-				</section>
+				<SectionAviasalesForm filterForm={filterForm} />
+				{error ? (
+					<ErrorBoundaries errorMessage={errorMessage} />
+				) : (
+					<SectionTickets
+						loading={loading}
+						count={count}
+						handleClick={handleClick}
+						tickets={tickets}
+					/>
+				)}
 			</div>
 		</>
 	);
