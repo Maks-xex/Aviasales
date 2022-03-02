@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Header } from "../components/Header/Header";
-import { getTicketsId } from "../api/getTicketsId";
+import { getSearchId } from "../api/getSearchId";
 import { getTickets } from "../api/getTickets";
 import { SectionTickets } from "../components/Tickets/SectionTickets";
 import { SectionAviasalesForm } from "../components/Form/SectionAviasalesForm";
@@ -20,8 +20,8 @@ export const Home = () => {
 	//hooks
 	const getTicketsAsync = async () => {
 		setLoading(true);
-		const ticketId = await getTicketsId(handleError);
-		const response = await getTickets(ticketId, handleError);
+		const searchId = await getSearchId(handleError);
+		const response = await getTickets(searchId, handleError);
 		if (response) {
 			setOrigin(response);
 			setTickets(response);
