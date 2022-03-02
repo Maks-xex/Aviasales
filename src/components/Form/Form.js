@@ -5,7 +5,7 @@ import { Tabs } from "./Tabs";
 import propTypes from "prop-types";
 
 export const Form = (props) => (
-	<form onChange={props.onFilterForm}>
+	<form onChange={(evt) => props.onFilterForm(evt)}>
 		<Filter />
 		<Tabs />
 	</form>

@@ -1,8 +1,14 @@
 import { search } from "./constants";
 
-export const getTicketsId = async () => {
+export const getTicketsId = async (onError) => {
 	let data = await fetch(search)
-		.then((res) => res.json())
-		.then((json) => json.searchId);
+		.then((res) => {
+			if (!res.ok) {
+				throw res.statusText;
+			}
+			return res.json();
+		})
+		.then((json) => json.searchId)
+		.catch((err) => onError("Error: " + err));
 	return data;
 };

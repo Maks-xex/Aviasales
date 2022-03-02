@@ -1,6 +1,6 @@
 import { searchId } from "./constants";
 
-export const getTickets = async (id) => {
+export const getTickets = async (id, onError) => {
 	let data = await fetch(searchId + id)
 		.then((response) => {
 			if (!response.ok) {
@@ -8,12 +8,7 @@ export const getTickets = async (id) => {
 			}
 			return response.json();
 		})
-		.then((json) => {
-			// if (json && !json.stop) {
-			// return getTickets(id);
-			// }
-			return json.tickets;
-		})
-		.catch((err) => console.log(err));
+		.then((json) => (json && !json.stop ? getTickets(id) : json.tickets))
+		.catch((err) => onError("Error: " + err));
 	return data;
 };
