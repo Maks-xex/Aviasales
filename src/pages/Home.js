@@ -9,15 +9,13 @@ import { ErrorBoundaries } from "../components/ErrorBoundaries";
 
 export const Home = () => {
 	//State
-	const [origin, setOrigin] = useState(["asd", "asd"]);
+	const [origin, setOrigin] = useState();
 	const [tickets, setTickets] = useState([]);
 	const [loading, setLoading] = useState();
 	const [count, setCount] = useState(5);
-	const [error, setError] = useState(false);
-	const [errorMessage, setErrorMeassage] = useState();
+	const [error, setError] = useState();
 	const handleError = (err) => {
-		setErrorMeassage(err);
-		setError(true);
+		setError(err);
 	};
 	//hooks
 	const getTicketsAsync = async () => {
@@ -69,6 +67,7 @@ export const Home = () => {
 					it.segments[1].stops.length === valueCheckboxMap[target.name] &&
 					target.checked
 				) {
+					checkbox[0].checked = false;
 					filtered.push(it);
 				}
 			});
@@ -137,16 +136,18 @@ export const Home = () => {
 		<>
 			<Header />
 			<div className='wrapper'>
-				<SectionAviasalesForm filterForm={filterForm} />
 				{error ? (
-					<ErrorBoundaries errorMessage={errorMessage} />
+					<ErrorBoundaries errorMessage={error.message} />
 				) : (
-					<SectionTickets
-						loading={loading}
-						count={count}
-						handleClick={handleClick}
-						tickets={tickets}
-					/>
+					<>
+						<SectionAviasalesForm filterForm={filterForm} />
+						<SectionTickets
+							loading={loading}
+							count={count}
+							handleClick={handleClick}
+							tickets={tickets}
+						/>
+					</>
 				)}
 			</div>
 		</>
