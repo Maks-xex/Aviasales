@@ -1,13 +1,7 @@
-import { search } from "./constants";
+import { AVIASALES_URL } from "./constants";
 
-export const getSearchId = async (onError) => {
-	let data = await fetch(search)
-		.then((res) => res.json())
-		.then(
-			(json) => json.searchId,
-			(err) => {
-				onError(err);
-			},
-		);
+export const getSearchId = async () => {
+	let response = await fetch(`${AVIASALES_URL}/search`);
+	let data = await response.json();
 	return data;
 };

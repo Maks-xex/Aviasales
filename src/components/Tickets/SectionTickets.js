@@ -10,16 +10,14 @@ const renderTickets = (tickets, count) =>
 		}
 		return <Tickets tickets={ticket} key={ticket.price} />;
 	});
-
 export const SectionTickets = ({ loading, count, tickets, handleClick }) => {
-	renderTickets(tickets, count);
 	return (
 		<section className='tickets'>
 			{loading ? (
 				<Loader />
 			) : (
 				<>
-					<ul className='tickets__list'>{renderTickets(tickets)}</ul>
+					<ul className='tickets__list'>{renderTickets(tickets, count)}</ul>
 					<Button onClick={handleClick} children='Показать ещё 5' />
 				</>
 			)}

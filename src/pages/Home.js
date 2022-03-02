@@ -14,18 +14,19 @@ export const Home = () => {
 	const [loading, setLoading] = useState();
 	const [count, setCount] = useState(5);
 	const [error, setError] = useState();
-	const handleError = (err) => {
-		setError(err);
-	};
 	//hooks
 	const getTicketsAsync = async () => {
 		setLoading(true);
-		const searchId = await getSearchId(handleError);
-		const response = await getTickets(searchId, handleError);
-		if (response) {
+		try {
+			const searchId = await getSearchId();
+			const response = await getTickets(searchId);
 			setOrigin(response);
 			setTickets(response);
 			filterTabs();
+		} catch (error) {
+			setLoading(false);
+			setError(error);
+			throw new Error(error);
 		}
 		setLoading(false);
 	};
@@ -126,7 +127,7 @@ export const Home = () => {
 	};
 	const filterForm = (evt) => {
 		filterTransfer(evt);
-		// filterTabs();
+		filterTabs();
 	};
 	//button click
 	const handleClick = () => {
