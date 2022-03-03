@@ -24,8 +24,8 @@ const renderRadioButtons = () =>
 		</li>
 	));
 
-export const Tabs = () => (
-	<fieldset className='aviasales-form__tabs'>
+export const Tabs = ({ loading }) => (
+	<fieldset className='aviasales-form__tabs' disabled={loading}>
 		<ul className='filter__list'>{renderRadioButtons()}</ul>
 	</fieldset>
 );

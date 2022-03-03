@@ -141,7 +141,7 @@ export const Home = () => {
 					<ErrorBoundaries errorMessage={error.message} />
 				) : (
 					<>
-						<SectionAviasalesForm filterForm={filterForm} />
+						<SectionAviasalesForm filterForm={filterForm} loading={loading} />
 						<SectionTickets
 							loading={loading}
 							count={count}

@@ -6,8 +6,8 @@ import propTypes from "prop-types";
 
 export const Form = (props) => (
 	<form onChange={(evt) => props.onFilterForm(evt)}>
-		<Filter />
-		<Tabs />
+		<Filter loading={props.loading} />
+		<Tabs loading={props.loading} />
 	</form>
 );
 Form.propTypes = {
