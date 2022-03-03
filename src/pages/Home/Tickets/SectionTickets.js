@@ -5,12 +5,9 @@ import propTypes from "prop-types";
 import { Loader } from "../../../components/Loader/Loader";
 
 const renderTickets = (tickets, count) =>
-	tickets.map((ticket, i) => {
-		if (i >= count) {
-			return null;
-		}
-		return <Tickets tickets={ticket} key={ticket.price} />;
-	});
+	tickets
+		.slice(count)
+		.map((ticket, i) => <Tickets tickets={ticket} key={ticket.price} />);
 export const SectionTickets = ({ loading, count, tickets, handleClick }) => {
 	return (
 		<section className='tickets'>
