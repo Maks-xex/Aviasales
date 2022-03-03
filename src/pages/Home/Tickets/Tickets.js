@@ -1,5 +1,4 @@
 import React from "react";
-// import S7logo from "../../assets/images/S7 Logo.png";
 import propTypes from "prop-types";
 import "./TicketStyle.scss";
 import { convertTime } from "../../../utils/converTime";

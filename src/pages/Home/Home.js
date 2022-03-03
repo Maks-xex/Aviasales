@@ -8,13 +8,11 @@ import { SectionAviasalesForm } from "./Form/SectionAviasalesForm";
 import { ErrorBoundaries } from "../../components/ErrorBoundaries";
 
 export const Home = () => {
-	//State
 	const [origin, setOrigin] = useState();
 	const [tickets, setTickets] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [count, setCount] = useState(5);
 	const [error, setError] = useState();
-	//hooks
 	const getTicketsAsync = async () => {
 		try {
 			const searchId = await getSearchId();
@@ -34,7 +32,6 @@ export const Home = () => {
 		getTicketsAsync();
 	}, []);
 
-	//filter Checkbox
 	const filterTransfer = (evt) => {
 		let filtered = [];
 		setCount(5);
@@ -74,7 +71,6 @@ export const Home = () => {
 		});
 		setTickets(() => filtered);
 	};
-	//filter tabs
 	const filterTabs = () => {
 		const list = [...document.querySelectorAll(".filter-list__item")];
 		const listValue = [...document.querySelectorAll("[type=radio]")];
@@ -128,7 +124,6 @@ export const Home = () => {
 		filterTransfer(evt);
 		filterTabs();
 	};
-	//button click
 	const handleClick = () => {
 		setCount(count + 5);
 	};
