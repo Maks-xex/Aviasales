@@ -9,5 +9,4 @@ export const SectionAviasalesForm = ({ filterForm, loading }) => (
 );
 SectionAviasalesForm.propTypes = {
 	filterForm: propTypes.func.isRequired,
-	loading: propTypes.bool,
 };

@@ -1,8 +1,8 @@
 import React from "react";
-import { Loader } from "../Loader/Loader";
+import { Button } from "../../../components/Button/Button";
 import { Tickets } from "./Tickets";
-import { Button } from "../Button/Button";
 import propTypes from "prop-types";
+import { Loader } from "../../../components/Loader/Loader";
 
 const renderTickets = (tickets, count) =>
 	tickets.map((ticket, i) => {

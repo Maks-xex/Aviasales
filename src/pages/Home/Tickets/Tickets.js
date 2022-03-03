@@ -2,7 +2,7 @@ import React from "react";
 // import S7logo from "../../assets/images/S7 Logo.png";
 import propTypes from "prop-types";
 import "./TicketStyle.scss";
-import { convertTime } from "../../utils/converTime";
+import { convertTime } from "../../../utils/converTime";
 export const Tickets = ({ tickets }) => {
 	const companyLogo = `https://pics.avs.io/99/36/${tickets.carrier}.png`;
 	const [firstSegments, secondSegments] = tickets.segments;

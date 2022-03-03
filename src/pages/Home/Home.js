@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
 
-import { Header } from "../components/Header/Header";
-import { getSearchId } from "../api/getSearchId";
-import { getTickets } from "../api/getTickets";
-import { SectionTickets } from "../components/Tickets/SectionTickets";
-import { SectionAviasalesForm } from "../components/Form/SectionAviasalesForm";
-import { ErrorBoundaries } from "../components/ErrorBoundaries";
+import { Header } from "../../components/Header/Header";
+import { getSearchId } from "../../api/getSearchId";
+import { getTickets } from "../../api/getTickets";
+import { SectionTickets } from "./Tickets/SectionTickets";
+import { SectionAviasalesForm } from "./Form/SectionAviasalesForm";
+import { ErrorBoundaries } from "../../components/ErrorBoundaries";
 
 export const Home = () => {
 	//State
 	const [origin, setOrigin] = useState();
 	const [tickets, setTickets] = useState([]);
-	const [loading, setLoading] = useState();
+	const [loading, setLoading] = useState(true);
 	const [count, setCount] = useState(5);
 	const [error, setError] = useState();
 	//hooks
 	const getTicketsAsync = async () => {
-		setLoading(true);
 		try {
 			const searchId = await getSearchId();
 			const response = await getTickets(searchId);
-			setOrigin(response);
-			setTickets(response);
+			setOrigin(response.tickets);
+			setTickets(response.tickets);
 			filterTabs();
 		} catch (error) {
 			setLoading(false);
