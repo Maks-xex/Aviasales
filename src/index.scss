@@ -7,6 +7,7 @@ $Semi-bold: 600;
 	box-sizing: border-box;
 }
 .v-hidden {
+	font-size: 0;
 	visibility: hidden;
 }
 body {
@@ -25,7 +26,9 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
 }
-
+fieldset {
+	user-select: none;
+}
 header {
 	display: flex;
 	justify-content: center;

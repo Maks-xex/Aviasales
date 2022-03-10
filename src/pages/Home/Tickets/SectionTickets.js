@@ -6,8 +6,8 @@ import { Loader } from "../../../components/Loader/Loader";
 
 const renderTickets = (tickets, count) =>
 	tickets
-		.slice(count)
-		.map((ticket, i) => <Tickets tickets={ticket} key={ticket.price} />);
+		.slice(0, count)
+		.map((ticket, i) => <Tickets tickets={ticket} key={i} />);
 export const SectionTickets = ({ loading, count, tickets, handleClick }) => {
 	return (
 		<section className='tickets'>
@@ -16,14 +16,13 @@ export const SectionTickets = ({ loading, count, tickets, handleClick }) => {
 			) : (
 				<>
 					<ul className='tickets__list'>{renderTickets(tickets, count)}</ul>
-					<Button onClick={handleClick} children='Показать ещё 5' />
+					<Button onClick={handleClick}>Показать ещё 5</Button>
 				</>
 			)}
 		</section>
 	);
 };
 SectionTickets.propTypes = {
-	loading: propTypes.bool.isRequired,
 	count: propTypes.number.isRequired,
 	tickets: propTypes.array.isRequired,
 	handleClick: propTypes.func.isRequired,

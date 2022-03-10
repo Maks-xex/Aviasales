@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import "./TicketStyle.scss";
-import { convertTime } from "../../../utils/converTime";
+import { convertTime } from "../../../utils/convertTime";
 export const Tickets = ({ tickets }) => {
 	const companyLogo = `https://pics.avs.io/99/36/${tickets.carrier}.png`;
 	const [firstSegments, secondSegments] = tickets.segments;
