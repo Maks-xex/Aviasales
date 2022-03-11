@@ -5,11 +5,11 @@ const span = Array(18)
 	.map((_, i) => <span style={{ "--i": i + 1 }} key={i}></span>);
 
 export const Loader = () => (
-	<>
+	<div className='loader-wrapper'>
 		<div className='loader loader2'>
 			{span}
 			<div className='plane'></div>
 		</div>
 		<p className='loader-text'>Loading Tickets...</p>
-	</>
+	</div>
 );

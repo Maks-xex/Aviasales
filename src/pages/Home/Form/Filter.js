@@ -18,8 +18,8 @@ const renderCheckboxes = () =>
 		</li>
 	));
 
-export const Filter = ({ loading }) => (
-	<fieldset className='aviasales-form__number-of-transfer' disabled={loading}>
+export const Filter = () => (
+	<fieldset className='aviasales-form__number-of-transfer'>
 		<legend>
 			<h3>Количество пересадок</h3>
 		</legend>

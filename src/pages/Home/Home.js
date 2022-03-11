@@ -6,6 +6,7 @@ import { getTickets } from "../../api/getTickets";
 import { SectionTickets } from "./Tickets/SectionTickets";
 import { SectionAviasalesForm } from "./Form/SectionAviasalesForm";
 import { ErrorBoundaries } from "../../components/ErrorBoundaries";
+import { Loader } from "../../components/Loader/Loader";
 
 const tabsActive = (checked) => {
 	const list = [...document.querySelectorAll(".filter-list__item")];
@@ -55,11 +56,11 @@ const checkboxFilter = (checkbox, origin, filteredTickets) => {
 			filteredTickets.push(it);
 			return;
 		}
-		checkbox.forEach((target, i) => {
+		checkbox.forEach((target, targetValue) => {
 			if (
 				target.checked &&
-				it.segments[0].stops.length === i - 1 &&
-				it.segments[1].stops.length === i - 1
+				it.segments[0].stops.length === targetValue - 1 &&
+				it.segments[1].stops.length === targetValue - 1
 			) {
 				filteredTickets.push(it);
 			}
@@ -86,6 +87,11 @@ export const Home = () => {
 	const [count, setCount] = useState(5);
 	const [error, setError] = useState();
 
+	const searchCompletion = async (searchId) => {
+		const response = await getTickets(searchId);
+		if (!response.stop) return searchCompletion(searchId);
+		return response.tickets;
+	};
 	useEffect(() => {
 		getTicketsAsync();
 	}, []);
@@ -94,13 +100,14 @@ export const Home = () => {
 		setLoading(true);
 		try {
 			const searchId = await getSearchId();
-			const response = await getTickets(searchId);
-			setTickets(response.tickets);
-			setOrigin(response.tickets);
+			const response = await searchCompletion(searchId);
+			setOrigin(response);
+			filterTabs(response);
+			setTickets(response);
 		} catch (error) {
 			setLoading(false);
-			setError(error);
-			throw new Error(error);
+			setError(`Error status: ${error}`);
+			throw new Error(`status: ${error}`);
 		}
 		setLoading(false);
 	};
@@ -111,7 +118,7 @@ export const Home = () => {
 		ticketsSort(checked, filteredTickets);
 	};
 
-	const filterForm = (evt) => {
+	const filterForm = async (evt) => {
 		let filteredTickets = [];
 		filterTransfer(evt, origin, filteredTickets);
 		filterTabs(filteredTickets);
@@ -126,15 +133,19 @@ export const Home = () => {
 			<Header />
 			<div className='wrapper'>
 				{error ? (
-					<ErrorBoundaries errorMessage={error.message} />
+					<ErrorBoundaries errorMessage={error} />
 				) : (
 					<>
-						<SectionAviasalesForm filterForm={filterForm} loading={loading} />
-						<SectionTickets
-							count={count}
-							handleClick={handleClick}
-							tickets={tickets}
-						/>
+						<SectionAviasalesForm filterForm={filterForm} />
+						{loading ? (
+							<Loader />
+						) : (
+							<SectionTickets
+								count={count}
+								handleClick={handleClick}
+								tickets={tickets}
+							/>
+						)}
 					</>
 				)}
 			</div>
