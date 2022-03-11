@@ -8,7 +8,7 @@ import { SectionAviasalesForm } from "./Form/SectionAviasalesForm";
 import { ErrorBoundaries } from "../../components/ErrorBoundaries";
 import { Loader } from "../../components/Loader/Loader";
 
-const tabsActive = (checked) => {
+const activeTab = (checked) => {
 	const list = [...document.querySelectorAll(".filter-list__item")];
 	list.forEach((it) => {
 		it.setAttribute("class", "filter-list__item");
@@ -114,7 +114,7 @@ export const Home = () => {
 
 	const filterTabs = (filteredTickets) => {
 		const checked = document.querySelector("[type=radio]:checked").value;
-		tabsActive(checked);
+		activeTab(checked);
 		ticketsSort(checked, filteredTickets);
 	};
 
