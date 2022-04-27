@@ -7,6 +7,7 @@ const renderTickets = (tickets, count) =>
 	tickets
 		.slice(0, count)
 		.map((ticket, i) => <Tickets tickets={ticket} key={i} />);
+
 export const SectionTickets = ({ count, tickets, handleClick }) => {
 	return (
 		<section className='tickets'>

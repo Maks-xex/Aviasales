@@ -2,7 +2,7 @@ import React from "react";
 
 const radioValue = {
 	cheep: "Самый дешевый",
-	fast: "Самый быстрый",
+	fastes: "Самый быстрый",
 	optimal: "Оптимальный",
 };
 const acticveButton =

@@ -7,8 +7,23 @@ $Semi-bold: 600;
 .tickets__list {
 	width: 502px;
 }
+
+@keyframes show-tickets {
+	from {
+		opacity: 0;
+		transform: translateY(5%);
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
 .tickets-list__item {
 	margin-bottom: 20px;
+	animation-name: show-tickets;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
 }
 .tickets-list-item__price {
 	font-size: 24px;

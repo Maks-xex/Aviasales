@@ -1,11 +1,13 @@
 import React from "react";
-import { Form } from "./Form.js";
 import propTypes from "prop-types";
-export const SectionAviasalesForm = ({ filterForm }) => (
+
+import { Form } from "./Form.js";
+
+export const SectionAviasalesForm = ({ onFilterForm }) => (
 	<section className='aviasales-form'>
-		<Form onFilterForm={filterForm} />
+		<Form onFilterForm={onFilterForm} />
 	</section>
 );
 SectionAviasalesForm.propTypes = {
-	filterForm: propTypes.func.isRequired,
+	onFilterForm: propTypes.func.isRequired,
 };
