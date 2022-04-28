@@ -5,8 +5,10 @@ const radioValue = {
 	fastes: "Самый быстрый",
 	optimal: "Оптимальный",
 };
+
 const acticveButton =
 	"filter-list__item filter-list__item--active-optimal filter-list__item--active";
+
 const renderRadioButtons = () =>
 	Object.keys(radioValue).map((it, i) => (
 		<li

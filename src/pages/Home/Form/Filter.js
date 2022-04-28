@@ -7,6 +7,7 @@ const checkboxValue = {
 	"two-transfer": "2 пересадка",
 	"three-transfer": "3 пересадка",
 };
+
 const renderCheckboxes = () =>
 	Object.keys(checkboxValue).map((it, i) => (
 		<li className='number-of-transfers__item' key={i}>

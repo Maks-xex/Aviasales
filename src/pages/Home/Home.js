@@ -4,6 +4,7 @@ import { Header } from "../../components/Header/Header";
 import { ErrorBoundaries } from "../../components/ErrorBoundaries";
 import { Loader } from "../../components/Loader/Loader";
 
+import { getTicketsArray } from "../../api/ArrayTickets";
 import { getSearchId } from "../../api/getSearchId";
 import { getTickets } from "../../api/getTickets";
 
@@ -12,8 +13,6 @@ import { SectionAviasalesForm } from "./Form/SectionAviasalesForm";
 
 import { sortedTicketsBy } from "../../utils/sortedTicketsBy";
 import { getFilteredTickets } from "../../utils/getFilteredTickets";
-
-import { getTicketsArray } from "../../api/ArrayTickets";
 
 const setActiveTab = (checked) => {
 	const list = [...document.querySelectorAll(".filter-list__item")];

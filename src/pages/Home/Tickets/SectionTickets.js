@@ -1,7 +1,9 @@
 import React from "react";
-import { Button } from "../../../components/Button/Button";
-import { Tickets } from "./Tickets";
 import propTypes from "prop-types";
+
+import { Button } from "../../../components/Button/Button";
+
+import { Tickets } from "./Tickets";
 
 const renderTickets = (tickets, count) =>
 	tickets
